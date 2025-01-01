@@ -4,6 +4,9 @@ class CPF:
     def __init__(self, cpf):
         self.__cpf = cpf
 
+    def getCPF(self):
+        return self.__cpf
+
     def setCPF(self, cpf):
         self.__cpf = cpf
 
