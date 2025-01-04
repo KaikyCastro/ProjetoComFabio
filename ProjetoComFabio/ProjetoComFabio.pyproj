@@ -25,6 +25,7 @@
     <Compile Include="Cpf.py" />
     <Compile Include="Gerente.py" />
     <Compile Include="main.py" />
+    <Compile Include="Login.py" />
     <Compile Include="Usuario.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
