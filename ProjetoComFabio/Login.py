@@ -7,6 +7,7 @@ janelaLogin = ctk.CTk(fg_color="White")
 
 class Login():
     def __init__(self):
+        super().__init__()
         self.janelaLogin = janelaLogin
         self.tema()
         self.tela()
@@ -22,14 +23,12 @@ class Login():
 
     def tela(self):
         #Configurando a janela do login
-        
         self.janelaLogin.geometry("720x400")
         self.janelaLogin.maxsize(width=720, height=400)
         self.janelaLogin.minsize(width=720, height=400)
         self.janelaLogin.iconbitmap("icon.ico")
 
     def tela_login(self):
-
         #Label para apresentar a empresa
         self.empresa = ctk.CTkLabel(master=self.janelaLogin, 
                                text="Seja Bem-Vindo a \nPropriedade Produtiva!", 
@@ -243,6 +242,7 @@ class Login():
                               text_color="Grey31",
                               font=("ArialBlack", 15),
                               border_width=3,
+                              command=criarTela,
                               border_color="Grey31")
         self.botaoLogin.place(x=30,y=300)
 
