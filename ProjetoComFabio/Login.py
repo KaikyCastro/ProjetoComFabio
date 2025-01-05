@@ -13,6 +13,9 @@ class Login():
         self.tela_login()
         self.janelaLogin.mainloop()
 
+    def returLogin(self):
+        return self.loginFrame
+
     def tema(self):
         self.janelaLogin._set_appearance_mode("light")
         self.janelaLogin.title("Login")
@@ -21,8 +24,8 @@ class Login():
         #Configurando a janela do login
         
         self.janelaLogin.geometry("720x400")
-        self.janelaLogin.maxsize(width=1920, height=1080)
-        self.janelaLogin.minsize(width=720, height=350)
+        self.janelaLogin.maxsize(width=720, height=400)
+        self.janelaLogin.minsize(width=720, height=400)
         self.janelaLogin.iconbitmap("icon.ico")
 
     def tela_login(self):
@@ -32,7 +35,7 @@ class Login():
                                text="Seja Bem-Vindo a \nPropriedade Produtiva!", 
                                fg_color="White", 
                                text_color="Black",
-                               font=("Arial black", 20))
+                               font=("Arial Black", 20))
         self.empresa.place(x=50, y=20)
 
         self.subtitulo = ctk.CTkLabel(master=self.janelaLogin, 
@@ -230,6 +233,17 @@ class Login():
                                  border_color="Grey31",
                                  font=("ArialBlack", 15))
         self.botaoCadastro.place(x=180,y=300)
-    
+
+        self.botaoLogin = ctk.CTkButton(master=self.loginFrame, 
+                              text="Login",
+                              hover_color="LightGreen",
+                              fg_color="LightGreen", 
+                              bg_color= "Gainsboro",
+                              corner_radius=20,
+                              text_color="Grey31",
+                              font=("ArialBlack", 15),
+                              border_width=3,
+                              border_color="Grey31")
+        self.botaoLogin.place(x=30,y=300)
 
        
