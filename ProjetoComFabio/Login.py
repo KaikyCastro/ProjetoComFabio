@@ -11,38 +11,38 @@ class Login():
         self.tema()
         self.tela()
         self.tela_login()
-        janelaLogin.mainloop()
+        self.janelaLogin.mainloop()
 
     def tema(self):
-        janelaLogin._set_appearance_mode("light")
-        janelaLogin.title("Login")
+        self.janelaLogin._set_appearance_mode("light")
+        self.janelaLogin.title("Login")
 
     def tela(self):
         #Configurando a janela do login
         
-        janelaLogin.geometry("720x400")
-        janelaLogin.maxsize(width=1920, height=1080)
-        janelaLogin.minsize(width=720, height=350)
-        janelaLogin.iconbitmap("icon.ico")
+        self.janelaLogin.geometry("720x400")
+        self.janelaLogin.maxsize(width=1920, height=1080)
+        self.janelaLogin.minsize(width=720, height=350)
+        self.janelaLogin.iconbitmap("icon.ico")
 
     def tela_login(self):
 
         #Label para apresentar a empresa
-        empresa = ctk.CTkLabel(master=janelaLogin, 
+        empresa = ctk.CTkLabel(master=self.janelaLogin, 
                                text="Seja Bem-Vindo a \nPropriedade Produtiva!", 
                                fg_color="White", 
                                text_color="Black",
                                font=("Arial black", 20))
         empresa.place(x=50, y=20)
 
-        subtitulo = ctk.CTkLabel(master=janelaLogin, 
+        subtitulo = ctk.CTkLabel(master=self.janelaLogin, 
                                  text="Profissionalize sua Propriedade Rural!", 
                                  fg_color="White", 
                                  text_color="Black",
                                  font=("Arial", 15))
         subtitulo.place(x=48, y=75)
 
-        loginFrame = ctk.CTkFrame(master=janelaLogin,
+        loginFrame = ctk.CTkFrame(master=self.janelaLogin,
                              width=350,
                              height=380,
                              corner_radius=20,
@@ -107,15 +107,15 @@ class Login():
                                 dark_image=Image.open("./logo.png"),
                                 size=(341,222))
 
-        display_imagem = ctk.CTkLabel(master=janelaLogin,
+        display_imagem = ctk.CTkLabel(master=self.janelaLogin,
                                       image=logotipo,
                                       text="")
         display_imagem.place(x=10, y=120)
 
         def janelaPrincipal():
             msgLogin = messagebox.showinfo(title="Login", message="Login efetuado com sucesso!")
-            janelaLogin.withdraw()
-            janelaP = ctk.CTkToplevel(janelaLogin, fg_color="Gainsboro")
+            self.janelaLogin.withdraw()
+            janelaP = ctk.CTkToplevel(self.janelaLogin, fg_color="Gainsboro")
             janelaP.title("Principal")
             janelaP.geometry("1280x720")
             janelaP.maxsize(width=1920, height=1080)
@@ -138,7 +138,7 @@ class Login():
         def cadastrar():
             loginFrame.place_forget()
 
-            cadFrame = ctk.CTkFrame(master=janelaLogin,
+            cadFrame = ctk.CTkFrame(master=self.janelaLogin,
                                     width=350,
                                     height=380,
                                     corner_radius=20,
