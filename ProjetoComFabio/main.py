@@ -1,4 +1,3 @@
-from Login import Login
+from TelaPrincipal import TelaPrincipal
 
 
-telaLogin = Login()
