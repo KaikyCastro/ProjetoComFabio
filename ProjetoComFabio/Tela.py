@@ -20,6 +20,7 @@ class Login():
     def tema(self):
         self.janelaLogin._set_appearance_mode("light")
         self.janelaLogin.title("Login")
+        
 
     def tela(self):
         #Configurando a janela do login
@@ -71,7 +72,7 @@ class Login():
                             text_color="Grey31",
                             border_width=3,
                             font=("Arial", 20),
-                            placeholder_text="CPF",
+                            placeholder_text="CPF (ex: ***.***.***-**)",
                             placeholder_text_color="Gray")
         self.user.place(x=20, y=100)
 
@@ -89,6 +90,12 @@ class Login():
                             placeholder_text_color="Gray")
         self.senha.place(x=20, y=160)
         
+        def visualizarSenha():
+            if self.ChekSenha.get() == "on":
+                self.senha.configure(show = "")
+            else:
+                self.senha.configure(show = "*")
+
         #Checkbox para visualizar senha
         self.ChekSenha = ctk.CTkCheckBox(master=self.loginFrame,
                                     width=10,
@@ -101,6 +108,7 @@ class Login():
                                     onvalue="on",
                                     offvalue="off",
                                     text_color="Grey31",
+                                    command=visualizarSenha,
                                     font=("Arial", 15))
         self.ChekSenha.place(x=30, y=220)
         
@@ -128,11 +136,11 @@ class Login():
 
             self.cadLabel = ctk.CTkLabel(master=self.cadFrame,
                                     text_color="Grey31",
-                                    text= "Cadastre o colaborador",
+                                    text= "Cadastre-se",
                                     fg_color="Gainsboro",
                                     bg_color="Gainsboro",
                                     font= ("ArialBlack", 30))
-            self.cadLabel.place(x=13, y=10)
+            self.cadLabel.place(x=88, y=10)
 
             self.nomeColaborador = ctk.CTkEntry(master=self.cadFrame,
                                            fg_color="lightGreen", 
@@ -143,9 +151,9 @@ class Login():
                                            text_color="Grey31",
                                            border_width=3,
                                            font=("Arial", 20),
-                                           placeholder_text="Nome",
+                                           placeholder_text="Nome Completo",
                                            placeholder_text_color="Gray")
-            self.nomeColaborador.place(x=20, y=80)
+            self.nomeColaborador.place(x=20, y=60)
 
             self.CPFColaborador = ctk.CTkEntry(master=self.cadFrame,
                                            fg_color="lightGreen", 
@@ -156,33 +164,68 @@ class Login():
                                            text_color="Grey31",
                                            border_width=3,
                                            font=("Arial", 20),
-                                           placeholder_text="CPF",
+                                           placeholder_text="CPF (ex: ***.***.***-**)",
                                            placeholder_text_color="Gray")
-            self.CPFColaborador.place(x=20, y=140)
+            self.CPFColaborador.place(x=20, y=110)
 
-            self.menuOpcao = ctk.CTkOptionMenu(master=self.cadFrame,
-                                          values=["Administrador", "Colaborador", "Pilantra", "Fabio"],
-                                            fg_color="lightGreen",
-                                            bg_color="Gainsboro",
-                                            corner_radius=20,
-                                            width=310,
-                                            height=37,
-                                            text_color="Grey31",
-                                            font=("Arial", 20))
-            self.menuOpcao.place(x=20, y=250)
-            self.cargoColaborador = ctk.CTkEntry(master=self.cadFrame,
-                                           fg_color="lightGreen", 
-                                           bg_color="Gainsboro",
-                                           corner_radius=20,
-                                           width=310,
-                                           height=37,
-                                           text_color="Grey31",
-                                           border_width=3,
-                                           font=("Arial", 20),
-                                           placeholder_text="Cargo",
-                                           placeholder_text_color="Gray")
-            self.cargoColaborador.place(x=20, y=200)
-            
+            self.senhaColaborador = ctk.CTkEntry(master=self.cadFrame,
+                                                 fg_color="lightGreen", 
+                                                 bg_color="Gainsboro",
+                                                 corner_radius=20,
+                                                 width=310,
+                                                 height=37,
+                                                 text_color="Grey31",
+                                                 border_width=3,
+                                                 font=("Arial", 20),
+                                                 placeholder_text="Senha",
+                                                 show="*",
+                                                 placeholder_text_color="Gray")
+            self.senhaColaborador.place(x=20, y=160)
+
+            self.confirmSenha = ctk.CTkEntry(master=self.cadFrame,
+                                             fg_color="lightGreen", 
+                                             bg_color="Gainsboro",
+                                             corner_radius=20,
+                                             width=310,
+                                             height=37,
+                                             text_color="Grey31",
+                                             border_width=3,
+                                             font=("Arial", 20),
+                                             placeholder_text="Confirmar Senha",
+                                             show="*",
+                                             placeholder_text_color="Gray")
+            self.confirmSenha.place(x=20, y=210)
+
+            self.campoObrigatorio = ctk.CTkLabel(master=self.cadFrame,
+                                                 text="* Campos obrigatorios",
+                                                 text_color="firebrick",
+                                                 fg_color="Gainsboro",
+                                                 bg_color="Gainsboro",
+                                                 font=("Arial", 15))
+            self.campoObrigatorio.place(x=20, y=253)
+
+            def visualizarSenhas():
+                if self.checkSenhaCad.get() == "on":
+                    self.senhaColaborador.configure(show = "")
+                    self.confirmSenha.configure(show = "")
+                else:
+                    self.senhaColaborador.configure(show = "*")
+                    self.confirmSenha.configure(show = "*")
+
+            self.checkSenhaCad = ctk.CTkCheckBox(master=self.cadFrame,
+                                                 width=10,
+                                                height=10,
+                                                border_width=3,
+                                                bg_color="Gainsboro",
+                                                fg_color="Grey31",
+                                                hover_color="Gray",
+                                                text="Visualizar senhas",
+                                                onvalue="on",
+                                                offvalue="off",
+                                                text_color="Grey31",
+                                                command=visualizarSenhas,
+                                                font=("Arial", 15))
+            self.checkSenhaCad.place(x=180, y=255)
             def voltar():
                 self.cadFrame.place_forget()
                 self.loginFrame.place(x=350, y=10)
@@ -233,6 +276,28 @@ class Login():
                                  font=("ArialBlack", 15))
         self.botaoCadastro.place(x=180,y=300)
 
+        def logar():
+            self.msg = messagebox.showinfo(title="Login", message="Logado com sucesso!")
+            self.janelaLogin.withdraw()
+            self.novaTela = ctk.CTkToplevel(fg_color="Gainsboro")
+            self.novaTela.title("Propriedade Produtiva")
+            self.novaTela.iconbitmap("icon2.ico")
+            self.novaTela.geometry("1536x864")
+            self.novaTela.minsize(1536, 864)
+            self.novaTela.maxsize(1536, 864)
+            
+            #exibindo nome de quem ta usando o sistema
+            self.userNow = ctk.CTkLabel(master=self.novaTela,
+                                   text="Bem-vindo, Fulano!",
+                                   fg_color="Gainsboro",
+                                   text_color="Black",
+                                   font=("Arial Black", 20))
+            self.userNow.place(x=50, y=20)
+
+
+
+            
+
         self.botaoLogin = ctk.CTkButton(master=self.loginFrame, 
                               text="Login",
                               hover_color="LightGreen",
@@ -242,7 +307,7 @@ class Login():
                               text_color="Grey31",
                               font=("ArialBlack", 15),
                               border_width=3,
-                              command=criarTela,
+                              command=logar,
                               border_color="Grey31")
         self.botaoLogin.place(x=30,y=300)
 

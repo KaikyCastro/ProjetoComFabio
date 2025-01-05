@@ -1,3 +1,3 @@
-from Login import Login
+from Tela import Login
 
 tela = Login()
