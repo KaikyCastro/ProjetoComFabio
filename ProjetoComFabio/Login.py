@@ -28,39 +28,39 @@ class Login():
     def tela_login(self):
 
         #Label para apresentar a empresa
-        empresa = ctk.CTkLabel(master=self.janelaLogin, 
+        self.empresa = ctk.CTkLabel(master=self.janelaLogin, 
                                text="Seja Bem-Vindo a \nPropriedade Produtiva!", 
                                fg_color="White", 
                                text_color="Black",
                                font=("Arial black", 20))
-        empresa.place(x=50, y=20)
+        self.empresa.place(x=50, y=20)
 
-        subtitulo = ctk.CTkLabel(master=self.janelaLogin, 
+        self.subtitulo = ctk.CTkLabel(master=self.janelaLogin, 
                                  text="Profissionalize sua Propriedade Rural!", 
                                  fg_color="White", 
                                  text_color="Black",
                                  font=("Arial", 15))
-        subtitulo.place(x=48, y=75)
+        self.subtitulo.place(x=48, y=75)
 
-        loginFrame = ctk.CTkFrame(master=self.janelaLogin,
+        self.loginFrame = ctk.CTkFrame(master=self.janelaLogin,
                              width=350,
                              height=380,
                              corner_radius=20,
                              bg_color="White",
                              fg_color="Gainsboro",
                              border_color="Gainsboro")
-        loginFrame.place(x=350, y=10)
+        self.loginFrame.place(x=350, y=10)
 
-        labelLogin = ctk.CTkLabel(master=loginFrame,
+        self.labelLogin = ctk.CTkLabel(master=self.loginFrame,
                                   text_color="Grey31",
                                   text= "Sistema de Login",
                                   fg_color="Gainsboro",
                                   bg_color="Gainsboro",
                                   font= ("ArialBlack", 30))
-        labelLogin.place(x=60, y=25)
+        self.labelLogin.place(x=60, y=25)
 
         #Criando e configurando os campos de usuario e senha
-        user = ctk.CTkEntry(master=loginFrame, 
+        self.user = ctk.CTkEntry(master=self.loginFrame, 
                             fg_color="lightGreen", 
                             bg_color="Gainsboro",
                             corner_radius=20,
@@ -71,9 +71,9 @@ class Login():
                             font=("Arial", 20),
                             placeholder_text="CPF",
                             placeholder_text_color="Gray")
-        user.place(x=20, y=100)
+        self.user.place(x=20, y=100)
 
-        senha = ctk.CTkEntry(master=loginFrame,
+        self.senha = ctk.CTkEntry(master=self.loginFrame,
                             fg_color="lightGreen", 
                             bg_color="Gainsboro",
                             corner_radius=20,
@@ -85,10 +85,10 @@ class Login():
                             placeholder_text="Senha",
                             show="*",
                             placeholder_text_color="Gray")
-        senha.place(x=20, y=160)
+        self.senha.place(x=20, y=160)
         
         #Checkbox para visualizar senha
-        ChekSenha = ctk.CTkCheckBox(master=loginFrame,
+        self.ChekSenha = ctk.CTkCheckBox(master=self.loginFrame,
                                     width=10,
                                     height=10,
                                     border_width=3,
@@ -100,62 +100,39 @@ class Login():
                                     offvalue="off",
                                     text_color="Grey31",
                                     font=("Arial", 15))
-        ChekSenha.place(x=30, y=220)
+        self.ChekSenha.place(x=30, y=220)
         
 
-        logotipo = ctk.CTkImage(light_image=Image.open("./logo.png"),
+        self.logotipo = ctk.CTkImage(light_image=Image.open("./logo.png"),
                                 dark_image=Image.open("./logo.png"),
                                 size=(341,222))
 
-        display_imagem = ctk.CTkLabel(master=self.janelaLogin,
-                                      image=logotipo,
+        self.display_imagem = ctk.CTkLabel(master=self.janelaLogin,
+                                      image=self.logotipo,
                                       text="")
-        display_imagem.place(x=10, y=120)
-
-        def janelaPrincipal():
-            msgLogin = messagebox.showinfo(title="Login", message="Login efetuado com sucesso!")
-            self.janelaLogin.withdraw()
-            janelaP = ctk.CTkToplevel(self.janelaLogin, fg_color="Gainsboro")
-            janelaP.title("Principal")
-            janelaP.geometry("1280x720")
-            janelaP.maxsize(width=1920, height=1080)
-            janelaP.minsize(width=1280, height=720)
-
-
-        botaoLogin = ctk.CTkButton(master=loginFrame, 
-                              text="Login",
-                              hover_color="LightGreen",
-                              fg_color="LightGreen", 
-                              bg_color= "Gainsboro",
-                              corner_radius=20,
-                              text_color="Grey31",
-                              font=("ArialBlack", 15),
-                              border_width=3,
-                              border_color="Grey31",
-                              command=janelaPrincipal)
-        botaoLogin.place(x=30,y=300)
+        self.display_imagem.place(x=10, y=120)
 
         def cadastrar():
-            loginFrame.place_forget()
+            self.loginFrame.place_forget()
 
-            cadFrame = ctk.CTkFrame(master=self.janelaLogin,
+            self.cadFrame = ctk.CTkFrame(master=self.janelaLogin,
                                     width=350,
                                     height=380,
                                     corner_radius=20,
                                     bg_color="White",
                                     fg_color="Gainsboro",
                                     border_color="Gainsboro")
-            cadFrame.place(x=350, y=10)
+            self.cadFrame.place(x=350, y=10)
 
-            cadLabel = ctk.CTkLabel(master=cadFrame,
+            self.cadLabel = ctk.CTkLabel(master=self.cadFrame,
                                     text_color="Grey31",
                                     text= "Cadastre o colaborador",
                                     fg_color="Gainsboro",
                                     bg_color="Gainsboro",
                                     font= ("ArialBlack", 30))
-            cadLabel.place(x=13, y=10)
+            self.cadLabel.place(x=13, y=10)
 
-            nomeColaborador = ctk.CTkEntry(master=cadFrame,
+            self.nomeColaborador = ctk.CTkEntry(master=self.cadFrame,
                                            fg_color="lightGreen", 
                                            bg_color="Gainsboro",
                                            corner_radius=20,
@@ -166,9 +143,9 @@ class Login():
                                            font=("Arial", 20),
                                            placeholder_text="Nome",
                                            placeholder_text_color="Gray")
-            nomeColaborador.place(x=20, y=80)
+            self.nomeColaborador.place(x=20, y=80)
 
-            CPFColaborador = ctk.CTkEntry(master=cadFrame,
+            self.CPFColaborador = ctk.CTkEntry(master=self.cadFrame,
                                            fg_color="lightGreen", 
                                            bg_color="Gainsboro",
                                            corner_radius=20,
@@ -179,9 +156,9 @@ class Login():
                                            font=("Arial", 20),
                                            placeholder_text="CPF",
                                            placeholder_text_color="Gray")
-            CPFColaborador.place(x=20, y=140)
+            self.CPFColaborador.place(x=20, y=140)
 
-            menuOpcao = ctk.CTkOptionMenu(master=cadFrame,
+            self.menuOpcao = ctk.CTkOptionMenu(master=self.cadFrame,
                                           values=["Administrador", "Colaborador", "Pilantra", "Fabio"],
                                             fg_color="lightGreen",
                                             bg_color="Gainsboro",
@@ -190,8 +167,8 @@ class Login():
                                             height=37,
                                             text_color="Grey31",
                                             font=("Arial", 20))
-            menuOpcao.place(x=20, y=250)
-            cargoColaborador = ctk.CTkEntry(master=cadFrame,
+            self.menuOpcao.place(x=20, y=250)
+            self.cargoColaborador = ctk.CTkEntry(master=self.cadFrame,
                                            fg_color="lightGreen", 
                                            bg_color="Gainsboro",
                                            corner_radius=20,
@@ -202,13 +179,13 @@ class Login():
                                            font=("Arial", 20),
                                            placeholder_text="Cargo",
                                            placeholder_text_color="Gray")
-            cargoColaborador.place(x=20, y=200)
+            self.cargoColaborador.place(x=20, y=200)
             
             def voltar():
-                cadFrame.place_forget()
-                loginFrame.place(x=350, y=10)
+                self.cadFrame.place_forget()
+                self.loginFrame.place(x=350, y=10)
 
-            botaoVoltar = ctk.CTkButton(master=cadFrame,
+            self.botaoVoltar = ctk.CTkButton(master=self.cadFrame,
                                         text="Voltar",
                                         hover_color="LightGreen",
                                         fg_color="LightGreen", 
@@ -219,15 +196,15 @@ class Login():
                                         border_width=3,
                                         border_color="Grey31",
                                         command=voltar)
-            botaoVoltar.place(x=30, y=300)
+            self.botaoVoltar.place(x=30, y=300)
 
             def cadColab():
-                msg = messagebox.showinfo(title="Cadastro", message="Colaborador cadastrado com sucesso!")
-                cadFrame.place_forget()
-                loginFrame.place(x=350, y=10)
+                self.msg = messagebox.showinfo(title="Cadastro", message="Colaborador cadastrado com sucesso!")
+                self.cadFrame.place_forget()
+                self.loginFrame.place(x=350, y=10)
 
 
-            botaoCadColab = ctk.CTkButton(master=cadFrame,
+            self.botaoCadColab = ctk.CTkButton(master=self.cadFrame,
                                          text="Cadastrar",
                                          hover_color="LightGreen",
                                          fg_color="LightGreen", 
@@ -238,10 +215,10 @@ class Login():
                                          border_width=3,
                                          border_color="Grey31",
                                          command=cadColab)
-            botaoCadColab.place(x=180, y=300)
+            self.botaoCadColab.place(x=180, y=300)
         #Criando e configurando a janela de cadastro
 
-        botaoCadastro = ctk.CTkButton(master=loginFrame, 
+        self.botaoCadastro = ctk.CTkButton(master=self.loginFrame, 
                                  text="Cadastrar",
                                  hover_color="LightGreen",
                                  fg_color="LightGreen", 
@@ -252,7 +229,7 @@ class Login():
                                  border_width=3,
                                  border_color="Grey31",
                                  font=("ArialBlack", 15))
-        botaoCadastro.place(x=180,y=300)
+        self.botaoCadastro.place(x=180,y=300)
     
 
        
