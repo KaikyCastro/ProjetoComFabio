@@ -1,3 +1,6 @@
+#encoding: utf-8
+
+
 from hashlib import sha256
 import customtkinter as ctk
 from tkinter import messagebox
