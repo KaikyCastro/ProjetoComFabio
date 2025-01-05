@@ -181,6 +181,16 @@ class Login():
                                            placeholder_text_color="Gray")
             CPFColaborador.place(x=20, y=140)
 
+            menuOpcao = ctk.CTkOptionMenu(master=cadFrame,
+                                          values=["Administrador", "Colaborador", "Pilantra", "Fabio"],
+                                            fg_color="lightGreen",
+                                            bg_color="Gainsboro",
+                                            corner_radius=20,
+                                            width=310,
+                                            height=37,
+                                            text_color="Grey31",
+                                            font=("Arial", 20))
+            menuOpcao.place(x=20, y=250)
             cargoColaborador = ctk.CTkEntry(master=cadFrame,
                                            fg_color="lightGreen", 
                                            bg_color="Gainsboro",
