@@ -1,6 +1,9 @@
+from unittest import result
 import mysql.connector
+lista = []
 
-class Database():
+
+class Database_cliente():
     def __init__(self):
         pass
 
@@ -10,7 +13,7 @@ class Database():
                                               host='localhost',
                                               user='root',
                                               password='',
-                                              database='cadastro')
+                                              database='Propriedade_Produtiva')
             self.cursor = self.conexao.cursor()
         except mysql.connector.DatabaseError:
             print("Nao foi possivel conectar ao banco dados")
@@ -22,44 +25,68 @@ class Database():
         except mysql.connector.DatabaseError:
             print("Nao foi possivel desconectar o banco de dados")
 
-    def inserir(self, nomev, nascimento, sexo, altura, peso, nacionalidade):
-        self.nomev = nomev
+    def inserir_cliente_sem_Incra_CAR(self, cpf, nome, nascimento, sexo, estado_civil, telefone):
+        self.cpf = cpf
+        self.nome = nome
         self.nascimento = nascimento
         self.sexo = sexo
-        self.altura = altura
-        self.peso = peso
-        self.nacionalidade = nacionalidade
-
+        self.estado_civil = estado_civil
+        self.telefone = telefone
+     
         try:
-            if self.nomev == '' or self.nascimento == '' or self.sexo == '' or self.altura == '' or peso == '' or nacionalidade == '':
+            if self.cpf == '' or self.nome == '' or self.nascimento == '' or self.sexo == '' or self.estado_civil == ''  or self.telefone == '':
                 print("Todos os campos sao obrigatorios")
             else:
-                self.inserirTab = f'INSERT INTO pessoas (nomev, nascimento, sexo, altura, peso, nacionalidade) VALUES ("{self.nomev}", "{self.nascimento}", "{self.sexo}", "{self.altura}","{self.peso}", "{self.nacionalidade}")'
-                self.cursor.execute(self.inserirTab)
+                self.inserirTabCliente = f'INSERT INTO Cliente (cpf, nome, nascimento, sexo, estado_civil, telefone) VALUES ("{self.cpf}", "{self.nome}", "{self.nascimento}", "{self.sexo}", "{self.estado_civil}", "{self.telefone}")'
+                self.cursor.execute(self.inserirTabCliente)
         except ValueError:
-            print("Valores addwdas")
+            print("Erro nos valores")
 
-    def pesquisar(self, ids):
-        self.id = ids
+    def inserir_cliente(self, cpf, nome, nascimento, sexo, estado_civil, telefone, CAR, INCRA):
+        self.cpf = cpf
+        self.nome = nome
+        self.nascimento = nascimento
+        self.sexo = sexo
+        self.estado_civil = estado_civil
+        self.telefone = telefone
+        self.CAR = CAR
+        self.INCRA = INCRA
 
-        self.search = f'SELECT id FROM pessoas WHERE id = "{ids}"'
+        try:
+            if self.cpf == '' or self.nome == '' or self.nascimento == '' or self.sexo == '' or self.estado_civil == ''  or self.telefone == '':
+                print("Todos os campos sao obrigatorios")
+            else:
+                self.inserirTabCliente = f'INSERT INTO Cliente (cpf, nome, nascimento, sexo, estado_civil, telefone, CAR, INCRA) VALUES ("{self.cpf}", "{self.nome}", "{self.nascimento}", "{self.sexo}", "{self.estado_civil}", "{self.telefone}", "{self.CAR}", "{self.INCRA}")'
+                self.cursor.execute(self.inserirTabCliente)
+        except ValueError:
+            print("Erro nos valores")
+
+    def pesquisar_cliente(self, cpf):
+        self.cpf = cpf
+        self.search = f'SELECT cpf FROM Cliente WHERE cpf = "{cpf}"'
         self.cursor.execute(self.search)
         self.resultado = self.cursor.fetchall()
         print(self.resultado)
+
+        
+        if (self.resultado == lista):
+            print("Nao existe esse cpf cadastrado!")
+        
       
-    def deletar(self, ids):
-        self.ids = ids
-        self.delet = f'DELETE FROM pessoas WHERE id = "{ids}"'
+    def deletar_cliente(self, cpf):
+        self.cpf = cpf
+        self.delet = f'DELETE FROM Cliente WHERE cpf = "{cpf}"'
         self.cursor.execute(self.delet)
 
-    def update(self, ids, nomev, nascimento, sexo, altura, peso, nacionalidade):
-        self.ids = ids
-        self.nomev = nomev
+    def update_cliente(self, cpf, nome, nascimento, sexo, estado_civil, telefone, CAR, INCRA):
+        self.cpf = cpf
+        self.nome = nome
         self.nascimento = nascimento
         self.sexo = sexo
-        self.altura = altura
-        self.peso = peso
-        self.nacionalidade = nacionalidade
+        self.estado_civil = estado_civil
+        self.telefone = telefone
+        self.CAR = CAR
+        self.INCRA = INCRA
 
-        self.atualizar = f'UPDATE pessoas set nomev = "{self.nomev}", nascimento = "{self.nascimento}", sexo = "{self.sexo}", altura = "{self.altura}", peso = "{self.peso}", nacionalidade = "{self.nacionalidade} "WHERE id = {self.ids}'
+        self.atualizar = f'UPDATE Cliente SET nome = "{self.nome}", nascimento = "{self.nascimento}", sexo = "{self.sexo}", estado_civil = "{self.estado_civil}", telefone = "{self.telefone}", CAR = "{self.CAR}", INCRA = "{self.INCRA}" WHERE cpf = "{self.cpf}"'
         self.atual = self.cursor.execute(self.atualizar)
