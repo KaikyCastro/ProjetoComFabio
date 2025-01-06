@@ -1,20 +1,26 @@
-import mysql.connector 
+import mysql.connector
 
 class Database():
     def __init__(self):
         pass
 
     def conectar(self):
-        self.conexao = mysql.connector.connect(
-                                          host='localhost',
-                                          user='root',
-                                          password='',
-                                          database='cadastro')
-        self.cursor = self.conexao.cursor()
+        try:
+            self.conexao = mysql.connector.connect(
+                                              host='localhost',
+                                              user='root',
+                                              password='',
+                                              database='cadastro')
+            self.cursor = self.conexao.cursor()
+        except mysql.connector.DatabaseError:
+            print("Nao foi possivel conectar ao banco dados")
 
     def desconectar(self):
-        self.conexao.close()
-        self.cursor.close()
+        try:
+            self.conexao.close()
+            self.cursor.close()
+        except mysql.connector.DatabaseError:
+            print("Nao foi possivel desconectar o banco de dados")
 
     def inserir(self, nomev, nascimento, sexo, altura, peso, nacionalidade):
         self.nomev = nomev
@@ -23,8 +29,15 @@ class Database():
         self.altura = altura
         self.peso = peso
         self.nacionalidade = nacionalidade
-        self.inserirTab = f'INSERT INTO pessoas (nomev, nascimento, sexo, altura, peso, nacionalidade) VALUES ("{self.nomev}", "{self.nascimento}", "{self.sexo}", "{self.altura}","{self.peso}", "{self.nacionalidade}")'
-        self.cursor.execute(self.inserirTab)
+
+        try:
+            if self.nomev == '' or self.nascimento == '' or self.sexo == '' or self.altura == '' or peso == '' or nacionalidade == '':
+                print("Todos os campos sao obrigatorios")
+            else:
+                self.inserirTab = f'INSERT INTO pessoas (nomev, nascimento, sexo, altura, peso, nacionalidade) VALUES ("{self.nomev}", "{self.nascimento}", "{self.sexo}", "{self.altura}","{self.peso}", "{self.nacionalidade}")'
+                self.cursor.execute(self.inserirTab)
+        except ValueError:
+            print("Valores addwdas")
 
     def pesquisar(self, ids):
         self.id = ids
