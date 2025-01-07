@@ -1,4 +1,33 @@
 from Database import Database_cliente, Database_colaborador, Database_propriedade
+from PySide6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget, QMainWindow
+from PySide6.QtGui import QFont, QAction
+from PySide6.QtCore import Qt
+
+
+app = QApplication()
+janela = QMainWindow()
+base = QWidget()
+layout = QVBoxLayout()
+
+
+font = QFont()
+font.setPixelSize(90)
+
+label = QLabel("Fala tu")
+label.setFont(font)
+label.setAlignment(Qt.AlignCenter)
+layout.addWidget(label)
+
+botao = QPushButton("Clique aqui")
+botao.setFont(font)
+layout.addWidget(botao)
+base.setLayout(layout)
+
+janela.setCentralWidget(base)
+janela.show()
+app.exec()
+
+
 
 
 '''cpf = "124.301.994-09"
