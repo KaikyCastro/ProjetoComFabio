@@ -1,4 +1,5 @@
 import mysql.connector
+from Cpf import CPF
 lista = []
 
 class Database_colaborador():
@@ -29,10 +30,13 @@ class Database_colaborador():
         self.nome = nome
         self.telefone = telefone
         self.senha = senha
+        self.testecpf = CPF(self.cpf)
 
         self.conectar()
         try:
-            if self.cpf == '' or self.cargo == '' or self.nome == '' or self.telefone == '' or self.senha == '':
+            if self.testecpf.validate(self.cpf) == False:
+                print("CPF invalido")
+            elif self.cpf == '' or self.cargo == '' or self.nome == '' or self.telefone == '' or self.senha == '':
                 print("Todos os campos sao obrigatorios")
             else:
                 self.inserirTabColaborador = f'INSERT INTO Colaborador (cpf, cargo, nome, telefone, senha) VALUES ("{self.cpf}", "{self.cargo}", "{self.nome}", "{self.telefone}", "{self.senha}")'
@@ -106,10 +110,13 @@ class Database_cliente():
         self.sexo = sexo
         self.estado_civil = estado_civil
         self.telefone = telefone
+        self.testecpf = CPF(self.cpf)
      
         self.conectar()
         try:
-            if self.cpf == '' or self.nome == '' or self.nascimento == '' or self.sexo == '' or self.estado_civil == ''  or self.telefone == '':
+            if self.testecpf.validate(self.cpf) == False:
+                print("CPF invalido")
+            elif self.cpf == '' or self.nome == '' or self.nascimento == '' or self.sexo == '' or self.estado_civil == ''  or self.telefone == '':
                 print("Todos os campos sao obrigatorios")
             else:
                 self.inserirTabCliente = f'INSERT INTO Cliente (cpf, nome, nascimento, sexo, estado_civil, telefone) VALUES ("{self.cpf}", "{self.nome}", "{self.nascimento}", "{self.sexo}", "{self.estado_civil}", "{self.telefone}")'
@@ -157,7 +164,7 @@ class Database_cliente():
         self.desconectar()
 
 
-class Database_propriedade():
+class Database_propriedade(Database_cliente):
     def __init__(self):
         pass
 
@@ -182,13 +189,14 @@ class Database_propriedade():
     def inserir_propriedade(self, endereco, nome_da_propriedade):
         self.endereco = endereco
         self.nome_da_propriedade = nome_da_propriedade
+        self.cpf_cliente = self.cpf
 
         self.conectar()
         try:
             if self.endereco == '' or self.nome_da_propriedade == '':
                 print("Todos os campos sao obrigatorios")
             else:
-                self.inserirTabPropriedade = f'INSERT INTO Propriedade (endereco, nome_da_propriedade) VALUES ("{self.endereco}", "{self.nome_da_propriedade}")'
+                self.inserirTabPropriedade = f'INSERT INTO Propriedade (endereco, nome_da_propriedade, cpf_cliente) VALUES ("{self.endereco}", "{self.nome_da_propriedade}", "{self.cpf_cliente}")'
                 self.cursor.execute(self.inserirTabPropriedade)
                 self.desconectar()
         except ValueError:
@@ -215,7 +223,6 @@ class Database_propriedade():
 
     def pesquisar_propriedade(self, endereco):
         self.endereco = endereco
-
         self.conectar()
         self.search = f'SELECT endereco FROM Propriedade WHERE endereco = "{endereco}"'
         self.cursor.execute(self.search)
