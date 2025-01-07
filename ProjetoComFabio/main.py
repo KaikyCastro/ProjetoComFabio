@@ -2,29 +2,15 @@ from Database import Database_cliente, Database_colaborador, Database_propriedad
 from PySide6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget, QMainWindow
 from PySide6.QtGui import QFont, QAction
 from PySide6.QtCore import Qt
+from PySide6.QtUiTools import QUiLoader
 
 
 app = QApplication()
-janela = QMainWindow()
-base = QWidget()
-layout = QVBoxLayout()
 
-
-font = QFont()
-font.setPixelSize(90)
-
-label = QLabel("Fala tu")
-label.setFont(font)
-label.setAlignment(Qt.AlignCenter)
-layout.addWidget(label)
-
-botao = QPushButton("Clique aqui")
-botao.setFont(font)
-layout.addWidget(botao)
-base.setLayout(layout)
-
-janela.setCentralWidget(base)
+loader = QUiLoader()
+janela = loader.load('mainwindow.ui')
 janela.show()
+
 app.exec()
 
 
